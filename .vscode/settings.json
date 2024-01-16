@@ -1,11 +1,1 @@
-{
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "driver": "PostgreSQL",
-            "name": "elephantNotes",
-            "connectString": "postgres://donexgrk:z7hZV9z8T1mP42S-gFhP9K4U2GSM1JTz@tuffi.db.elephantsql.com/donexgrk"
-        }
-    ]
-}
+
