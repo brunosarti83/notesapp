@@ -1,0 +1,26 @@
+const { Note, Category } = require('../../db/db');
+
+const removeCategoryHandler = async (id, categoryId) => {
+    try {
+        const note = await Note.findByPk(id)
+        if (!note) {
+            throw new Error(`No note with id: ${id} was found`)
+        }
+        await note.removeCategory(categoryId)
+        const updatedNote = await Note.findByPk(id, {
+            include: [{
+                model: Category,
+                attributes: ['id', 'name'],
+                through: {
+                    attributes: []
+                }
+            }]
+        })
+        return updatedNote
+
+    } catch (error) {
+        throw error //
+    }
+};
+
+module.exports = removeCategoryHandler;
