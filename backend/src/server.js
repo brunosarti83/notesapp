@@ -23,6 +23,9 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use('/', router); // <------
+// important router for backend before routing for frontend
+
 // this is for hooking up frontend build
 const _dirname = path.dirname("")
 const buildPath = path.join(_dirname, "../frontend/dist")
@@ -31,7 +34,7 @@ server.use(express.static(buildPath))
 
 server.get('/*', function(req, res) {
 
-  res.sendFile(path.join(_dirname, "../frontend/dist/index.html"),
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"),
   function(err) {
     if (err) {
       res.status(500).send(err);
@@ -40,7 +43,6 @@ server.get('/*', function(req, res) {
 })
 ////
 
-server.use('/', router);
 
 // Error catching
 server.use((err, req, res, next) => {
